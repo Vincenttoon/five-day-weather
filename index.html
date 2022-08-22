@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body class="body-style">
+    <header class="hero">
+        <h1 class="app-title">Weather Dashboard</h1>
+    </header>
+
+    <main class="main-container">
+        <div class="search-cont" id="search-cont">
+            <h2 class="search-head">Search for Cities</h2>
+            <input name="city" id="city-search" type="text" autofocus="true" class="form-input">
+            <button type="submit" class="btn">Search</button>
+        </div>
+
+        <div class="city-list" id="city-list">
+            <div class="city-list-style" id="city-btns">
+                <h2 class="spec-head">Search by City</h2>
+                <button type="submit" class="city-btn">St. Louis</button>
+                <button type="submit" class="city-btn">Chicago</button>
+                <button type="submit" class="city-btn">New York</button>
+                <button type="submit" class="city-btn">Los Angeles</button>
+                <button type="submit" class="city-btn">Denver</button>
+                <button type="submit" class="city-btn">Miami</button>
+                <button type="submit" class="city-btn">Seattle</button>
+                <button type="submit" class="city-btn">Dallas</button>
+            </div>
+        </div>
+
+        <div class="city-details" id="city-details">
+            <h2 class="detial-text" id="detail-head"></h2>
+            <p id="city-temp"></p>
+            <p id="city-wind"></p>
+            <p id="city-humid"></p>
+            <p id="city-uv"></p>
+        </div>
+
+        <div class="forecast-container" id="forecast-container">
+            <h3 class="forecast-head" id="forecast-head">5 Day Forecast:</h3>
+            <div class="five-day-cont" id="five-day-cont"></div>
+        </div>
+    </main>
+
+
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
