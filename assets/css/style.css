@@ -33,17 +33,22 @@ body {
 
 .main-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    margin-left: 20px; 
-    text-align: center; 
+    margin-left: 20px;
+    margin-right: 20px; 
+    text-align: center;
+    width: 90%;
 }
 
 .search-cont {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 100%;
     justify-content: center;
+    padding: 0 20px 0 20px;
+    border-right: 10px;
+    border-color: var(--secondary);
 }
 
 .search-head {
@@ -97,6 +102,22 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    width: 60%;
+    width: 68%;
+    padding-left: 80px;
+}
+
+.city-details {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border-style: solid;
+    border-color: #2f8886;
+}
+
+.forecast-container {
+    height: 50%
 }
 
