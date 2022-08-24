@@ -27,9 +27,10 @@ $("#currentDay").text(currentDate);
         fetch(apiUrl1)
             .then(function(response){ return response.json()})
             .then(function(data){
-                console.log(data)
+                // console.log(data)
 
                 $('#detail-head').text(data.name)
+                $('#current-date').text(currentDate)
 
                 let lat = data.coord.lat;
                 let lon = data.coord.lon;
@@ -54,20 +55,23 @@ $("#currentDay").text(currentDate);
     
 
     function renderEl(data){
-        $("#city-temp").text("Temp : " + data.current.temp)
-        $("#city-wind").text("Wind Speed : " + data.current.wind_speed)
-        $("#city-humid").text("Humidity : " + data.current.humidity)
+        $("#city-temp").text("Temp : " + data.current.temp + ' Deg')
+        $("#city-wind").text("Wind Speed : " + data.current.wind_speed + ' MPH')
+        $("#city-humid").text("Humidity : " + data.current.humidity + '%')
         $("#city-uv").text("UV Index : " +data.current.uvi)
 
         for (let i = 1; i < data.daily.length; i++) {
             if (i === 5) {break; }
-            $("five-day-cont").text(data.daily.temp)
-            $("five-day-cont").text(data.daily.wind_speed)
-            $("five-day-cont").text(data.daily.humidity)
-            
         }
+
+        $('#five-day-cont').append('<div id=ind-days></div>')
+        $('#five-day-cont').addClass('card-body')
+        $("#ind-days").text(data.daily.temp)
+        $("#ind-days").text(data.daily.wind_speed)
+        $("#ind-days").text(data.daily.humidity) 
     }
 
+    // Local Storage
 
 // for (let i = 1; i < data.daily.length; i++) {
 //     const element = array[i];
@@ -77,12 +81,12 @@ $("#currentDay").text(currentDate);
 
 // use city info to move into lat, lon data
 
-let getLatLon = function() {
+// let getLatLon = function() {
 
-    // function to call cities that I can't get to work
-    const apiUrl1 = "https://api.openweathermap.org/data/2.5/weather?q=austin&appid=9231802aec25fba81f6ca09766ddefe6";
+//     // function to call cities that I can't get to work
+//     const apiUrl1 = "https://api.openweathermap.org/data/2.5/weather?q=austin&appid=9231802aec25fba81f6ca09766ddefe6";
 
-}
+// }
 
 // use lat, lon, city to generate weather
 
