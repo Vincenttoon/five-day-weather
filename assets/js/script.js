@@ -46,7 +46,7 @@ $("#currentDay").text(currentDate);
 
                         //code
 
-                        renderEl(data);
+                        renderDailyEl(data);
 
                         //code
                     })
@@ -55,7 +55,7 @@ $("#currentDay").text(currentDate);
     })
     
 
-    function renderEl(data){
+    function renderDailyEl(data){
         $("#city-temp").text("Temp : " + data.current.temp + ' Deg')
         $("#city-wind").text("Wind Speed : " + data.current.wind_speed + ' MPH')
         $("#city-humid").text("Humidity : " + data.current.humidity + '%')
@@ -68,21 +68,34 @@ $("#currentDay").text(currentDate);
                 $('#city-uv').addClass('bg-success text-white');
             }
 
-            let card = $('<div>').addClass('card p-10 col-md-2 m-3 align-items-center text-center bg-light border border-dark-shadow')
-            let cardBody = $('<div>').addClass('card-body');
-            let cardTitle = $('<h4>').addClass('card-title').text(data.name);
-            let cardDate = $('<h5>').addClass('card-subtitle').text(data.time);
-            let cardText = $('<p>').addClass('card-text').text("Temp : " + data.daily.temp);
-            let cardText2 = $('<p>').addClass('card-text').text('Humidity : ' + data.daily.humidity);
-            let cardText3 = $('<p>').addClass('card-text').text('Wind : ' + data.daily.humidity + " MPH");
-            let cardText4 = $('<p>').addClass('card-text').text('UV Index : ' + data.daily.uvi);
-        // need to append forecast
-
         for (let i = 1; i < data.daily.length; i++) {
             const loopData = array[i];
             if (i === 6) {break; }
+            let rollingDay = moment().add(i, 'd').format('MMMM Do YYYY');
+            let card = $('<div>').addClass('card p-10 col-md-2 m-3 align-items-center text-center bg-light border border-dark-shadow')
+            let cardBody = $('<div>').addClass('card-body');
+            let cardDate = $('<h5>').addClass('card-subtitle').text(rollingDay);
+            let cardText = $('<p>')
+            .addClass('card-text')
+            .text("High Temp : " + data.daily[i].temp.max);
+            let cardText2 = $('<p>')
+            .addClass('card-text')
+            .text('Humidity : ' + data.daily[i].humidity);
+            let cardText3 = $('<p>')
+            .addClass('card-text')
+            .text('Wind : ' + data.daily[i].wind_speed + " MPH");
+            let cardText4 = $('<p>')
+            .addClass('card-text')
+            .text('UV Index : ' + data.daily[i].uvi);
+            if (data.daily[i].uvi > 7) {
+                cardText4.addClass('bg-danger text-white');
+            } else if (data.daily[i] > 5) {
+                cardText4.addClass('bg-warning text-dark');
+            } else {
+                $(cardText4).addClass('bg-success text-white');
+            }
+
             cardBody.append(
-                cardTitle,
                 cardDate,
                 cardText,
                 cardText2,
@@ -91,16 +104,37 @@ $("#currentDay").text(currentDate);
             );
 
             card.append(cardBody);
-            
             $('#five-day-cont').append(card);
-            // $('#five-day-cont').addClass('card-body')
-            // $("#ind-days").text(data.daily.temp)
-            // $('#ind-days').append(data.daily.temp)
-            // $("#ind-days").text(data.daily.wind_speed)
-            // $("#ind-days").text(data.daily.humidity)
-            // $('#ind-days').addClass('card-body')
         }
     }
+
+    // function renderForecastEl(data) {
+    //     for (let i = 1; i < data.daily.length; i++) {
+    //         const loopData = array[i];
+    //         if (i === 6) {break; }
+    //         let card = $('<div>').addClass('card p-10 row-md-2 m-3 align-items-center text-center bg-light border border-dark-shadow')
+    //         let cardBody = $('<div>').addClass('card-body');
+    //         let cardTitle = $('<h4>').addClass('card-title').text(data.city);
+    //         let cardDate = $('<h5>').addClass('card-subtitle').text(data.time);
+    //         let cardText = $('<p>').addClass('card-text').text("Temp : " + data.daily.temp);
+    //         let cardText2 = $('<p>').addClass('card-text').text('Humidity : ' + data.daily.humidity);
+    //         let cardText3 = $('<p>').addClass('card-text').text('Wind : ' + data.daily.wind_speed + " MPH");
+    //         let cardText4 = $('<p>').addClass('card-text').text('UV Index : ' + data.daily.uvi);
+
+    //         cardBody.append(
+    //             cardTitle,
+    //             cardDate,
+    //             cardText,
+    //             cardText2,
+    //             cardText3,
+    //             cardText4,
+    //         );
+
+    //         card.append(cardBody);
+            
+    //         $('#five-day-cont').append(card);
+    //     }
+    // }
 
     // Local Storage
 
@@ -140,5 +174,3 @@ $("#currentDay").text(currentDate);
 
 
 // getCityInfo();
-
-// api key: 
