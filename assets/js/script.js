@@ -9,6 +9,7 @@ let cityHum = document.getElementById('city-humid');
 let cityUv = document.getElementById('city-uv');
 let foreHead = document.getElementById('forecast-head');
 let fiveDay = document.getElementById('five-day-cont');
+let array = [];
 const apiKey = "9231802aec25fba81f6ca09766ddefe6";
 
 // get current date
@@ -59,40 +60,53 @@ $("#currentDay").text(currentDate);
         $("#city-wind").text("Wind Speed : " + data.current.wind_speed + ' MPH')
         $("#city-humid").text("Humidity : " + data.current.humidity + '%')
         $("#city-uv").text("UV Index : " +data.current.uvi)
+            if ('#city-uv' > 7) {
+                $('#city-uv').addClass('bg-danger text-white');
+            } else if ('#city-uv' > 5) {
+                $('#city-uv').addClass('bg-warning text-dark');
+            } else {
+                $('#city-uv').addClass('bg-success text-white');
+            }
+
+            let card = $('<div>').addClass('card p-10 col-md-2 m-3 align-items-center text-center bg-light border border-dark-shadow')
+            let cardBody = $('<div>').addClass('card-body');
+            let cardTitle = $('<h4>').addClass('card-title').text(data.name);
+            let cardDate = $('<h5>').addClass('card-subtitle').text(data.time);
+            let cardText = $('<p>').addClass('card-text').text("Temp : " + data.daily.temp);
+            let cardText2 = $('<p>').addClass('card-text').text('Humidity : ' + data.daily.humidity);
+            let cardText3 = $('<p>').addClass('card-text').text('Wind : ' + data.daily.humidity + " MPH");
+            let cardText4 = $('<p>').addClass('card-text').text('UV Index : ' + data.daily.uvi);
+        // need to append forecast
 
         for (let i = 1; i < data.daily.length; i++) {
-            if (i === 5) {break; }
-        }
+            const loopData = array[i];
+            if (i === 6) {break; }
+            cardBody.append(
+                cardTitle,
+                cardDate,
+                cardText,
+                cardText2,
+                cardText3,
+                cardText4,
+            );
 
-        $('#five-day-cont').append('<div id=ind-days></div>')
-        $('#five-day-cont').addClass('card-body')
-        $("#ind-days").text(data.daily.temp)
-        $("#ind-days").text(data.daily.wind_speed)
-        $("#ind-days").text(data.daily.humidity) 
+            card.append(cardBody);
+            
+            $('#five-day-cont').append(card);
+            // $('#five-day-cont').addClass('card-body')
+            // $("#ind-days").text(data.daily.temp)
+            // $('#ind-days').append(data.daily.temp)
+            // $("#ind-days").text(data.daily.wind_speed)
+            // $("#ind-days").text(data.daily.humidity)
+            // $('#ind-days').addClass('card-body')
+        }
     }
 
     // Local Storage
 
-// for (let i = 1; i < data.daily.length; i++) {
-//     const element = array[i];
-    
-// }
-
 
 // use city info to move into lat, lon data
 
-// let getLatLon = function() {
-
-//     // function to call cities that I can't get to work
-//     const apiUrl1 = "https://api.openweathermap.org/data/2.5/weather?q=austin&appid=9231802aec25fba81f6ca09766ddefe6";
-
-// }
-
-// use lat, lon, city to generate weather
-
-// use lat, lon, city, weather info to generate results on html
-
-// generate daily results in appropriate containers
 
 
 // API Key for Lat Lon data:
