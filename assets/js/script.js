@@ -27,10 +27,13 @@ $("#currentDay").text(currentDate);
         fetch(apiUrl1)
             .then(function(response){ return response.json()})
             .then(function(data){
-                // console.log(data)
+                console.log(data)
+
+                $('#detail-head').text(data.name)
 
                 let lat = data.coord.lat;
                 let lon = data.coord.lon;
+
 
                 const apiUrl2 = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=9231802aec25fba81f6ca09766ddefe6&units=imperial`
 
@@ -40,9 +43,6 @@ $("#currentDay").text(currentDate);
                         console.log(data);
 
                         //code
-
-                        $('detail-head').text(city)
-                        
 
                         renderEl(data);
 
@@ -54,17 +54,16 @@ $("#currentDay").text(currentDate);
     
 
     function renderEl(data){
-        $("#city-temp").text(data.current.temp)
-        $("#city-wind").text(data.current.wind_speed)
-        $("#city-humid").text(data.current.humidity)
-        $("#city-uv").text(data.current.uvi)
+        $("#city-temp").text("Temp : " + data.current.temp)
+        $("#city-wind").text("Wind Speed : " + data.current.wind_speed)
+        $("#city-humid").text("Humidity : " + data.current.humidity)
+        $("#city-uv").text("UV Index : " +data.current.uvi)
 
         for (let i = 1; i < data.daily.length; i++) {
             if (i === 5) {break; }
             $("five-day-cont").text(data.daily.temp)
             $("five-day-cont").text(data.daily.wind_speed)
             $("five-day-cont").text(data.daily.humidity)
-            $("#five-day-cont").text(data.daily.uvi)
             
         }
     }
