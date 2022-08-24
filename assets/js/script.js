@@ -19,12 +19,17 @@ $("#currentDay").text(currentDate);
 
 const handleForm = function() {
     const city = $("#city-search").val().trim();
+
+
+
 }
 
 // use city info to move into lat, lon data
 
-let getLatLon = function(city) {
-    const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?id=city&appid=${apiKey}';
+let getLatLon = function() {
+
+    // function to call cities that I can't get to work
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?id=${city}&appid=${apiKey}";
 
 }
 
@@ -32,7 +37,23 @@ let getLatLon = function(city) {
 
 // use lat, lon, city, weather info to generate results on html
 
-// generate daily results in 
+// generate daily results in appropriate containers
+
+
+// API Key for Lat Lon data:
+// https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+
+
+// API Key for weather data
+// https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&contd=&appid=${9231802aec25fba81f6ca09766ddefe6}
+
+
+
+
+
+
+
+
 
 
 
