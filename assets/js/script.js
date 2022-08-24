@@ -17,19 +17,71 @@ $("#currentDay").text(currentDate);
 
 // get info from city-search from submit button
 
-const handleForm = function() {
-    const city = $("#city-search").val().trim();
+
+    $('#search-btn').on('click', function() {
+        const city = $("#city").val().trim();
+        // console.log(city);
+
+        const apiUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9231802aec25fba81f6ca09766ddefe6`;
+
+        fetch(apiUrl1)
+            .then(function(response){ return response.json()})
+            .then(function(data){
+                // console.log(data)
+
+                let lat = data.coord.lat;
+                let lon = data.coord.lon;
+
+                const apiUrl2 = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=9231802aec25fba81f6ca09766ddefe6&units=imperial`
+
+                fetch(apiUrl2)
+                    .then(function(response) { return response.json()})
+                    .then(function(data){
+                        console.log(data);
+
+                        //code
+
+                        $('detail-head').text(city)
+                        
+
+                        renderEl(data);
+
+                        //code
+                    })
+            });
+        
+    })
+    
+
+    function renderEl(data){
+        $("#city-temp").text(data.current.temp)
+        $("#city-wind").text(data.current.wind_speed)
+        $("#city-humid").text(data.current.humidity)
+        $("#city-uv").text(data.current.uvi)
+
+        for (let i = 1; i < data.daily.length; i++) {
+            if (i === 5) {break; }
+            $("five-day-cont").text(data.daily.temp)
+            $("five-day-cont").text(data.daily.wind_speed)
+            $("five-day-cont").text(data.daily.humidity)
+            $("#five-day-cont").text(data.daily.uvi)
+            
+        }
+    }
 
 
+// for (let i = 1; i < data.daily.length; i++) {
+//     const element = array[i];
+    
+// }
 
-}
 
 // use city info to move into lat, lon data
 
 let getLatLon = function() {
 
     // function to call cities that I can't get to work
-    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?id=${city}&appid=${apiKey}";
+    const apiUrl1 = "https://api.openweathermap.org/data/2.5/weather?q=austin&appid=9231802aec25fba81f6ca09766ddefe6";
 
 }
 
@@ -41,11 +93,11 @@ let getLatLon = function() {
 
 
 // API Key for Lat Lon data:
-// https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+// https://api.openweathermap.org/data/2.5/weather?q=austin&appid=9231802aec25fba81f6ca09766ddefe6
 
 
 // API Key for weather data
-// https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&contd=&appid=${9231802aec25fba81f6ca09766ddefe6}
+// https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={API key}&units=imperial
 
 
 
