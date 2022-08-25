@@ -25,14 +25,15 @@ $("#currentDay").text(currentDate);
         // console.log(city);
 
         localStorage.setItem(city, JSON.stringify(city));
-        // if (localStorage.length > 0) {
-        //     for (let i = 0; i < localStorage.length; i++) {
-        //         let key = localStorage.key[i];
-        //         let value = localStorage.getItem(key);
-        //         let 
+        if (localStorage.length > 0) {
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key[i];
+                let value = localStorage.getItem(key);
+                let request = JSON.parse(value);
                 
-        //     }
-        // }
+                
+            }
+        }
 
         const apiUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9231802aec25fba81f6ca09766ddefe6`;
 
