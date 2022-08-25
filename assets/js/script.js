@@ -23,6 +23,8 @@ $("#currentDay").text(currentDate);
         const city = $("#city").val().trim();
         // console.log(city);
 
+        localStorage.setItem(city, JSON.stringify(city));
+
         const apiUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9231802aec25fba81f6ca09766ddefe6`;
 
         fetch(apiUrl1)
@@ -108,39 +110,7 @@ $("#currentDay").text(currentDate);
         }
     }
 
-    // function renderForecastEl(data) {
-    //     for (let i = 1; i < data.daily.length; i++) {
-    //         const loopData = array[i];
-    //         if (i === 6) {break; }
-    //         let card = $('<div>').addClass('card p-10 row-md-2 m-3 align-items-center text-center bg-light border border-dark-shadow')
-    //         let cardBody = $('<div>').addClass('card-body');
-    //         let cardTitle = $('<h4>').addClass('card-title').text(data.city);
-    //         let cardDate = $('<h5>').addClass('card-subtitle').text(data.time);
-    //         let cardText = $('<p>').addClass('card-text').text("Temp : " + data.daily.temp);
-    //         let cardText2 = $('<p>').addClass('card-text').text('Humidity : ' + data.daily.humidity);
-    //         let cardText3 = $('<p>').addClass('card-text').text('Wind : ' + data.daily.wind_speed + " MPH");
-    //         let cardText4 = $('<p>').addClass('card-text').text('UV Index : ' + data.daily.uvi);
-
-    //         cardBody.append(
-    //             cardTitle,
-    //             cardDate,
-    //             cardText,
-    //             cardText2,
-    //             cardText3,
-    //             cardText4,
-    //         );
-
-    //         card.append(cardBody);
-            
-    //         $('#five-day-cont').append(card);
-    //     }
-    // }
-
-    // Local Storage
-
-
-// use city info to move into lat, lon data
-
+    // 
 
 
 // API Key for Lat Lon data:
@@ -149,28 +119,3 @@ $("#currentDay").text(currentDate);
 
 // API Key for weather data
 // https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&appid={API key}&units=imperial
-
-
-
-
-
-
-
-
-
-
-
-// search cities for weather using API call
-// let getCityInfo = function(lat, lon) {
-//     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=38.6270&lon=90.1994&appid=9231802aec25fba81f6ca09766ddefe6";
-    
-//     if (Response.ok) {
-//         console.log(lat, lon)
-//     }
-// }
-
-// https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&contd=&appid=${9231802aec25fba81f6ca09766ddefe6}
-
-
-
-// getCityInfo();
