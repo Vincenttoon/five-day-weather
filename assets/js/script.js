@@ -16,6 +16,7 @@ const apiKey = "9231802aec25fba81f6ca09766ddefe6";
 let currentDate = moment().format('MMMM Do YYYY');
 $("#currentDay").text(currentDate);
 
+
 // get info from city-search from submit button
 
 
@@ -24,6 +25,14 @@ $("#currentDay").text(currentDate);
         // console.log(city);
 
         localStorage.setItem(city, JSON.stringify(city));
+        // if (localStorage.length > 0) {
+        //     for (let i = 0; i < localStorage.length; i++) {
+        //         let key = localStorage.key[i];
+        //         let value = localStorage.getItem(key);
+        //         let 
+                
+        //     }
+        // }
 
         const apiUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9231802aec25fba81f6ca09766ddefe6`;
 
@@ -47,6 +56,7 @@ $("#currentDay").text(currentDate);
                         console.log(data);
 
                         //code
+                        $('.card').remove();
 
                         renderDailyEl(data);
 
@@ -69,6 +79,11 @@ $("#currentDay").text(currentDate);
             } else {
                 $('#city-uv').addClass('bg-success text-white');
             }
+        $('#city-img').attr(
+            'src', `http://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`
+        ).attr(
+            'alt', 'weather icon'
+        )
 
         for (let i = 1; i < data.daily.length; i++) {
             const loopData = array[i];
@@ -96,6 +111,11 @@ $("#currentDay").text(currentDate);
             } else {
                 $(cardText4).addClass('bg-success text-white');
             }
+            let img = $('<img>').attr(
+                'src', `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}.png`
+            ).attr(
+                'alt', 'weather icon'
+            )
 
             cardBody.append(
                 cardDate,
@@ -103,12 +123,30 @@ $("#currentDay").text(currentDate);
                 cardText2,
                 cardText3,
                 cardText4,
+                img
             );
 
             card.append(cardBody);
             $('#five-day-cont').append(card);
         }
     }
+
+    $('.clear-btn').on('click', function(){
+        localStorage.clear();
+        location.reload();
+    });
+
+    // function showStorage() {
+
+    //     // const cityBtn = document.getElementById('city-btns');
+    //     // cityBtn.removeAttribute('class', 'none');
+
+    //     // $('city-btns').JSON.parse(localStorage.getItem(city))
+
+
+
+
+    // }
 
     // 
 
