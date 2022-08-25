@@ -15,6 +15,7 @@ Use Third-Party API's to create a functioning and interactive webpage that displ
 ## Current Bugs
 
 - Cannot for the life of me figure out how to display my Storage data to the buttons I created and search their locations
+- See script.js lines 28-41 & 145-151 for attempts
 - TA told me to turn in, reorganize code and API calls into multiple functions
 - Will return to adjust for full functionality later
 

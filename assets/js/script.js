@@ -25,15 +25,20 @@ $("#currentDay").text(currentDate);
         // console.log(city);
 
         localStorage.setItem(city, JSON.stringify(city));
-        if (localStorage.length > 0) {
-            for (let i = 0; i < localStorage.length; i++) {
-                let key = localStorage.key[i];
-                let value = localStorage.getItem(key);
-                let request = JSON.parse(value);
+        // if (localStorage.length > 0) {
+        //     for (let i = 0; i < localStorage.length; i++) {
+        //         let key = localStorage.key[i];
+        //         let value = localStorage.getItem(key);
+        //         let request = JSON.parse(value);
+
+        //         const cityBtn = document.getElementById('city-btns');
+        //         cityBtn.removeAttribute('class', 'none');
+        //         cityBtn.add(value)
+
                 
                 
-            }
-        }
+        //     }
+        // }
 
         const apiUrl1 = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9231802aec25fba81f6ca09766ddefe6`;
 
@@ -139,18 +144,11 @@ $("#currentDay").text(currentDate);
 
     // function showStorage() {
 
-    //     // const cityBtn = document.getElementById('city-btns');
-    //     // cityBtn.removeAttribute('class', 'none');
+    // const cityBtn = document.getElementById('city-btns');
+    // cityBtn.removeAttribute('class', 'none');
 
     //     // $('city-btns').JSON.parse(localStorage.getItem(city))
-
-
-
-
     // }
-
-    // 
-
 
 // API Key for Lat Lon data:
 // https://api.openweathermap.org/data/2.5/weather?q=austin&appid=9231802aec25fba81f6ca09766ddefe6
